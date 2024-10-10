@@ -52,7 +52,6 @@ public class EcoSystem {
 
     public Manager addManager() {
         System.out.print("Enter Manager's Name: ");
-        sc.nextLine();
         String name = sc.nextLine();
 
         String email;
@@ -85,12 +84,12 @@ public class EcoSystem {
         Manager manager = new Manager(this,name,email,contactNumber,marginPercentage);
         this.manager_pool.add(manager);
         System.out.println(" added to the Ecosystem.");
+        sc.nextLine();
         return manager;
     }
 
     public Freelancer addFreeLancer() {
         System.out.print("Enter Freelancer's Name: ");
-        sc.nextLine();
         String name = sc.nextLine();
         String email;
         while (true) {
@@ -157,7 +156,7 @@ public class EcoSystem {
         // Display available Freelancers
         System.out.println("Available Freelancers in the Ecosystem:");
         for (int i = 0; i < free_freelancers.size(); i++) {
-            System.out.println("Job #" + (i + 1));
+            System.out.println("Freelancer #" + (i + 1));
             free_freelancers.get(i).displayDetails();
             System.out.println("----------------------");
         }
@@ -335,6 +334,32 @@ public class EcoSystem {
         for (int i = 0; i < this.client_pool.size(); i++) {
             System.out.println("Client #" + (i + 1));
             this.client_pool.get(i).displayClientDetails();
+            System.out.println("----------------------");
+        }
+    }
+    public void displayAllManagers() {
+        if (this.manager_pool.isEmpty()) {
+            System.out.println("No Managers are there in the Eco System.");
+            return;
+        }
+
+        System.out.println("All Managers in the Eco System:");
+        for (int i = 0; i < this.manager_pool.size(); i++) {
+            System.out.println("Manager #" + (i + 1));
+            this.manager_pool.get(i).displayManagerDetails();
+            System.out.println("----------------------");
+        }
+    }
+    public void displayAllFreelancers() {
+        if (this.freelancer_pool.isEmpty()) {
+            System.out.println("No Freelancers are there in the Eco System.");
+            return;
+        }
+
+        System.out.println("All Freelancers in the Eco System:");
+        for (int i = 0; i < this.freelancer_pool.size(); i++) {
+            System.out.println("Freelancer #" + (i + 1));
+            this.freelancer_pool.get(i).displayFreelancerDetails();
             System.out.println("----------------------");
         }
     }

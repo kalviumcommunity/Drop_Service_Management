@@ -97,7 +97,7 @@ abstract public class Job{
     public void displayJobDetails() {
         System.out.println("Job Title: " + this.title);
         System.out.println("Description: " + this.description);
-        System.out.println("Description: " + this.category);
+        System.out.println("Category: " + this.category);
         System.out.println("Date of Completion: " + this.date_of_completion);
         System.out.println("Price: $" + this.price);
         System.out.println("Client Email ID: " + this.client_email_id);
