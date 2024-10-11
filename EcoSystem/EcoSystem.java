@@ -13,6 +13,7 @@ import Job.Categories.VideoEditingJob;
 import Manager.Manager;
 
 public class EcoSystem {
+
     Scanner sc = new Scanner(System.in);
 
     public ArrayList<Job> job_pool = new ArrayList<Job>();
@@ -44,7 +45,7 @@ public class EcoSystem {
                 System.out.println("Invalid Email");
             }
         }
-        Client client = new Client(this,name,email);
+        Client client = new Client(this, name, email);
         this.client_pool.add(client);
         System.out.println("Client added to the Ecosystem.");
         return client;
@@ -55,10 +56,10 @@ public class EcoSystem {
         String name = sc.nextLine();
 
         String email;
-        while(true){
+        while (true) {
             System.out.print("Enter Manager's Email: ");
             String res_email = sc.nextLine();
-            if(res_email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+            if (res_email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
                 boolean isPresent = false;
                 for (Manager manager : this.manager_pool) {
                     if (manager.email == res_email) {
@@ -67,11 +68,11 @@ public class EcoSystem {
                         break;
                     }
                 }
-                if(!isPresent){
+                if (!isPresent) {
                     email = res_email;
                     break;
                 }
-            }else{
+            } else {
                 System.out.println("Invalid Email");
             }
         }
@@ -81,7 +82,7 @@ public class EcoSystem {
 
         System.out.print("Enter Manager's Margin Percentage (in %): ");
         float marginPercentage = sc.nextFloat();
-        Manager manager = new Manager(this,name,email,contactNumber,marginPercentage);
+        Manager manager = new Manager(this, name, email, contactNumber, marginPercentage);
         this.manager_pool.add(manager);
         System.out.println(" added to the Ecosystem.");
         sc.nextLine();
@@ -114,7 +115,7 @@ public class EcoSystem {
         }
         System.out.print("Enter Freelancer's Contact Number: ");
         String contact_number = sc.nextLine();
-        Freelancer freelancer = new Freelancer(this,name,email,contact_number);
+        Freelancer freelancer = new Freelancer(this, name, email, contact_number);
         this.freelancer_pool.add(freelancer);
         System.out.println("Freelancer added to the Ecosystem.");
         return freelancer;
@@ -131,18 +132,21 @@ public class EcoSystem {
             System.out.println("You have no Job to assign.");
             return;
         }
-
-        System.out.println("Pending Jobs:");
         Job chosenJob;
-        manager.displayAllPendingJobs();
-        System.out.print("Enter the number of the job you'd like to take: ");
-        int jobChoice = sc.nextInt() - 1;
 
-        if (jobChoice >= 0 && jobChoice < manager.numberOfPendingJobs()) {
-            chosenJob = manager.chooseFromPendingJobs(jobChoice);
-        } else {
-            System.out.println("Invalid choice.");
-            return;
+        while (true) {
+            System.out.println("Pending Jobs:");
+            manager.displayAllPendingJobs();
+            System.out.print("Enter the number of the job you'd like to take: ");
+            int jobChoice = sc.nextInt() - 1;
+
+            if (jobChoice >= 0 && jobChoice < manager.numberOfPendingJobs()) {
+                chosenJob = manager.chooseFromPendingJobs(jobChoice);
+                break;
+            } else {
+                System.out.println("Invalid choice.");
+                return;
+            }
         }
 
         ArrayList<Freelancer> free_freelancers = new ArrayList<Freelancer>();
@@ -154,25 +158,27 @@ public class EcoSystem {
         }
 
         // Display available Freelancers
-        System.out.println("Available Freelancers in the Ecosystem:");
-        for (int i = 0; i < free_freelancers.size(); i++) {
-            System.out.println("Freelancer #" + (i + 1));
-            free_freelancers.get(i).displayDetails();
-            System.out.println("----------------------");
-        }
+        while (true) {
+            System.out.println("Available Freelancers in the Ecosystem:");
+            for (int i = 0; i < free_freelancers.size(); i++) {
+                System.out.println("Freelancer #" + (i + 1));
+                free_freelancers.get(i).displayDetails();
+                System.out.println("----------------------");
+            }
 
-        System.out.print("Enter the number of the Freelancer you'd like to assign the work: ");
-        int freelancerChoice = sc.nextInt() - 1;
+            System.out.print("Enter the number of the Freelancer you'd like to assign the work: ");
+            int freelancerChoice = sc.nextInt() - 1;
 
-        if (freelancerChoice >= 0 && freelancerChoice < free_freelancers.size()) {
-            Freelancer chosenFreelancer = free_freelancers.get(freelancerChoice);
-            chosenJob.assignFreelancer(chosenFreelancer.email);
-            chosenFreelancer.addJob(chosenJob);
-            manager.removeFromPendingAndAddToAssignedJob(chosenJob);
-            System.out.println("Job assigned to Freelancer: " + chosenFreelancer.name);
-        } else {
-            System.out.println("Invalid choice.");
-            return;
+            if (freelancerChoice >= 0 && freelancerChoice < free_freelancers.size()) {
+                Freelancer chosenFreelancer = free_freelancers.get(freelancerChoice);
+                chosenJob.assignFreelancer(chosenFreelancer.email);
+                chosenFreelancer.addJob(chosenJob);
+                manager.removeFromPendingAndAddToAssignedJob(chosenJob);
+                System.out.println("Job assigned to Freelancer: " + chosenFreelancer.name);
+                break;
+            } else {
+                System.out.println("Invalid choice.");
+            }
         }
 
     }
@@ -193,23 +199,26 @@ public class EcoSystem {
         }
 
         // Display available jobs
-        System.out.println("Available Jobs in the Pool:");
-        for (int i = 0; i < unassignedJobs.size(); i++) {
-            System.out.println("Job #" + (i + 1));
-            unassignedJobs.get(i).displayJobDetails();
-            System.out.println("----------------------");
-        }
+        while (true) {
+            System.out.println("Available Jobs in the Pool:");
+            for (int i = 0; i < unassignedJobs.size(); i++) {
+                System.out.println("Job #" + (i + 1));
+                unassignedJobs.get(i).displayJobDetails();
+                System.out.println("----------------------");
+            }
 
-        System.out.print("Enter the number of the job you'd like to take: ");
-        int jobChoice = sc.nextInt() - 1;
+            System.out.print("Enter the number of the job you'd like to take: ");
+            int jobChoice = sc.nextInt() - 1;
 
-        if (jobChoice >= 0 && jobChoice < unassignedJobs.size()) {
-            Job chosenJob = unassignedJobs.get(jobChoice);
-            manager.addToPendingJob(chosenJob);; // Add to manager's pending jobs
-            chosenJob.assignDropServicer(manager.email);
-            System.out.println("Job assigned to Manager: " + manager.name);
-        } else {
-            System.out.println("Invalid choice.");
+            if (jobChoice >= 0 && jobChoice < unassignedJobs.size()) {
+                Job chosenJob = unassignedJobs.get(jobChoice);
+                manager.addToPendingJob(chosenJob);; // Add to manager's pending jobs
+                chosenJob.assignDropServicer(manager.email);
+                System.out.println("Job assigned to Manager: " + manager.name);
+                break;
+            } else {
+                System.out.println("Invalid choice.");
+            }
         }
     }
 
@@ -291,7 +300,7 @@ public class EcoSystem {
                 isVFXIncluded = response.toLowerCase().equals("y");
                 System.out.println("Creating a Thumbnail Editing job...");
 
-                newJob = new ThumbnailEditingJob(client.email, this, title, description, date_of_completion, price,numberOfElements,isVFXIncluded);
+                newJob = new ThumbnailEditingJob(client.email, this, title, description, date_of_completion, price, numberOfElements, isVFXIncluded);
                 break;
 
             case 3:
@@ -299,7 +308,7 @@ public class EcoSystem {
                 System.out.print("How many pages are required for the content? ");
                 int numberOfPages = sc.nextInt();
                 System.out.println("Creating a Content Writing job...");
-                newJob = new ContentWritingJob(client.email, this, title, description, date_of_completion, price,numberOfPages);
+                newJob = new ContentWritingJob(client.email, this, title, description, date_of_completion, price, numberOfPages);
                 break;
 
             default:
@@ -337,6 +346,7 @@ public class EcoSystem {
             System.out.println("----------------------");
         }
     }
+
     public void displayAllManagers() {
         if (this.manager_pool.isEmpty()) {
             System.out.println("No Managers are there in the Eco System.");
@@ -350,6 +360,7 @@ public class EcoSystem {
             System.out.println("----------------------");
         }
     }
+
     public void displayAllFreelancers() {
         if (this.freelancer_pool.isEmpty()) {
             System.out.println("No Freelancers are there in the Eco System.");

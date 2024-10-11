@@ -174,15 +174,15 @@ abstract public class Job{
                 break;
             }
         }
-        System.out.println(requiredClient.name);
-        System.out.println(requiredManager.name);
-        System.out.println(requiredFreelancer.name);
-
+        
         if(requiredClient != null && requiredFreelancer != null && requiredManager != null){
             requiredClient.deductBalance(this.price);
+            System.out.println("Job Completed for: " + requiredClient.name);
             requiredManager.addBalance(this.price * (requiredManager.getMarginPercentage()/100));
+            System.out.println("Managed by: " + requiredManager.name);
             requiredManager.markAsCompleted(this);
             requiredFreelancer.addBalance(this.price - (this.price * (requiredManager.getMarginPercentage()/100)));
+            System.out.println("Job completed by: " + requiredFreelancer.name);
             requiredFreelancer.markAsCompleted(this);
             markAsPaid();
             return true;
