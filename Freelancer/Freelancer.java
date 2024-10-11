@@ -14,7 +14,12 @@ public class Freelancer {
     private Job currentJob;
     public int no_of_completed_jobs = 0;
     public EcoSystem eco_System;
-    public static float bonus = 10;
+    public static float bonus = 0;
+
+    public static void setBonus(float percentage){
+        Freelancer.bonus = percentage;
+        System.out.println("!!!Announcement!!! Freelancers are getting " + percentage + "% of bonus on payment for every job they complete.");
+    }
 
     public Freelancer(EcoSystem ecoSystem,String name, String email,String contactNumber) {
 
