@@ -12,6 +12,7 @@ public class Client {
     private float balance;
     private ArrayList<Job> postedJobs;
     public EcoSystem eco_system;
+    public static float discount = 10;
 
     // Constructor to initialize client details and starting balance
     public Client(EcoSystem ecoSystem,String name, String email) {
@@ -63,6 +64,7 @@ public class Client {
     }
 
     public void deductBalance(float amount){
-        this.balance -= amount;
+        this.balance -= amount - (amount*(Client.discount/100));
+        System.out.println("Paid: $" + (amount - (amount*(Client.discount/100))));
     }
 }

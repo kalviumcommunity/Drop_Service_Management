@@ -14,6 +14,7 @@ public class Freelancer {
     private Job currentJob;
     public int no_of_completed_jobs = 0;
     public EcoSystem eco_System;
+    public static float bonus = 10;
 
     public Freelancer(EcoSystem ecoSystem,String name, String email,String contactNumber) {
 
@@ -60,7 +61,8 @@ public class Freelancer {
         currentJob.submitWork(path);
     }
     public void addBalance(float amount){
-        this.balance += amount;
+        this.balance += amount + (amount*(Freelancer.bonus/100));
+        System.out.println("Got Paid: $" + (amount + (amount*(Freelancer.bonus/100))));
     }
     public void markAsCompleted(Job job){
         this.completedJobs.add(job);

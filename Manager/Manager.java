@@ -15,6 +15,7 @@ public class Manager {
     private ArrayList<Job> completedJobs;
     public int no_of_completed_jobs;
     public EcoSystem eco_system;
+    public static float bonus = 10;
 
     // Constructor that prompts the user for manager's info
     public Manager(EcoSystem ecoSystem,String name,String email,String contactNumber,float marginPercentage) {
@@ -47,7 +48,8 @@ public class Manager {
 
 
     public void addBalance(float amount){
-        this.balance += amount;
+        this.balance += amount + (amount*(Manager.bonus/100));
+        System.out.println("Got Paid: $" + (amount + (amount*(Manager.bonus/100))));
     }
     public float getMarginPercentage(){
         return this.marginPercentage;
