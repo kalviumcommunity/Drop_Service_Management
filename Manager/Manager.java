@@ -15,7 +15,12 @@ public class Manager {
     private ArrayList<Job> completedJobs;
     public int no_of_completed_jobs;
     public EcoSystem eco_system;
-    public static float bonus = 10;
+    public static float bonus = 0;
+
+    public static void setBonus(float percentage){
+        Manager.bonus = percentage;
+        System.out.println("!!!Announcement!!! Managers are getting " + percentage + "% of bonus on commision for every job they manage and complete.");
+    }
 
     // Constructor that prompts the user for manager's info
     public Manager(EcoSystem ecoSystem,String name,String email,String contactNumber,float marginPercentage) {

@@ -15,14 +15,18 @@ public class Main {
         Freelancer freelancer1 = ecoSystem.addFreeLancer();
         Freelancer freelancer2 = ecoSystem.addFreeLancer();
         
+        
+        
+        Client.setDiscount(10);
+        Freelancer.setBonus(10);
+        Manager.setBonus(10);
+
         System.out.println(freelancer1.bonus);
         System.out.println(freelancer2.bonus);
         System.out.println(manager1.bonus);
         System.out.println(manager2.bonus);
         System.out.println(client1.discount);
         System.out.println(client2.discount);
-        
-        
         
         ecoSystem.createJob(client1);
         ecoSystem.createJob(client2);
@@ -31,6 +35,9 @@ public class Main {
         ecoSystem.assignJobToFreelancer(manager1);
         ecoSystem.assignJobToFreelancer(manager2);
         freelancer1.submitWork("path.mp4");
+        Client.setDiscount(5);
+        Freelancer.setBonus(5);
+        Manager.setBonus(5);
         freelancer2.submitWork("path.jpg");
     }
 }

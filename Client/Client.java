@@ -12,7 +12,13 @@ public class Client {
     private float balance;
     private ArrayList<Job> postedJobs;
     public EcoSystem eco_system;
-    public static float discount = 10;
+    public static float discount = 0;
+
+
+    public static void setDiscount(float percentage){
+        Client.discount = percentage;
+        System.out.println("!!!Announcement!!! Clients are getting " + percentage + "% of discount on their payments.");
+    }
 
     // Constructor to initialize client details and starting balance
     public Client(EcoSystem ecoSystem,String name, String email) {
