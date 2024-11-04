@@ -1,9 +1,8 @@
 package Freelancer;
 
-import java.util.ArrayList;
-
 import EcoSystem.EcoSystem;
 import Job.Job;
+import java.util.ArrayList;
 
 public class Freelancer {
     public String name;
@@ -43,8 +42,8 @@ public class Freelancer {
             System.out.println("Insufficient balance. Available balance: $" + this.balance);
         }
     }
-    public void seeBalance(){
-        System.out.println(this.balance);
+    public float getBalance(){
+        return this.balance;
     }
 
     public boolean isWorking(){

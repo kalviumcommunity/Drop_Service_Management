@@ -7,11 +7,8 @@ public class Main {
     public static void main(String[] args) {
         EcoSystem ecoSystem = new EcoSystem();
         Client client1 = ecoSystem.addClient();
-        Client client2 = ecoSystem.addClient();
         client1.addBalance(100);
-        client2.addBalance(100);
         Manager manager1 = ecoSystem.addManager();
-        Manager manager2 = ecoSystem.addManager();
         Freelancer freelancer1 = ecoSystem.addFreeLancer();
         Freelancer freelancer2 = ecoSystem.addFreeLancer();
         
@@ -20,24 +17,17 @@ public class Main {
         Client.setDiscount(10);
         Freelancer.setBonus(10);
         Manager.setBonus(10);
-
-        System.out.println(freelancer1.bonus);
-        System.out.println(freelancer2.bonus);
-        System.out.println(manager1.bonus);
-        System.out.println(manager2.bonus);
-        System.out.println(client1.discount);
-        System.out.println(client2.discount);
         
         ecoSystem.createJob(client1);
-        ecoSystem.createJob(client2);
+        ecoSystem.createJob(client1);
         ecoSystem.chooseJobFromPool(manager1);
-        ecoSystem.chooseJobFromPool(manager2);
+        ecoSystem.chooseJobFromPool(manager1);
         ecoSystem.assignJobToFreelancer(manager1);
-        ecoSystem.assignJobToFreelancer(manager2);
+        ecoSystem.assignJobToFreelancer(manager1);
         freelancer1.submitWork("path.mp4");
-        Client.setDiscount(5);
-        Freelancer.setBonus(5);
-        Manager.setBonus(5);
         freelancer2.submitWork("path.jpg");
+
+        System.out.println("Client 1 Balance: $" + client1.getBalance());
+        System.out.println("Manager 1 Balance: $" + manager1.getBalance());
     }
 }
