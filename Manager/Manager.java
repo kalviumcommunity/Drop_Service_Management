@@ -1,8 +1,8 @@
 package Manager;
 
-import java.util.ArrayList;
 import EcoSystem.EcoSystem;
 import Job.Job;
+import java.util.ArrayList;
 
 public class Manager {
     public String name;
@@ -47,8 +47,8 @@ public class Manager {
             System.out.println("Insufficient balance. Available balance: $" + this.balance);
         }
     }
-    public void seeBalance(){
-        System.out.println(this.balance);
+    public float getBalance(){
+        return this.balance;
     }
 
 
