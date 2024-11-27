@@ -1,13 +1,12 @@
 package Job.Categories;
 
-import java.time.LocalDate;
-
 import EcoSystem.EcoSystem;
 import Job.Job;
+import java.time.LocalDate;
 
 public class ContentWritingJob extends Job {
-    private int numberOfPages;
-    public int level = this.calculateJobLevel();
+    protected int numberOfPages;
+    public int level;
 
     public ContentWritingJob(String email_id,EcoSystem ecoSystem,String title,String description,LocalDate date_of_completion,float price,int numberOfPages) {
         super(email_id,ecoSystem,title,description,date_of_completion,price);
@@ -17,6 +16,7 @@ public class ContentWritingJob extends Job {
 
         this.ALLOWED_SUBMISSION_TYPES = new String[] {"doc", "pdf", "txt"};
         this.RECOMMENDED_SKILLS = new String[] {"SEO", "Grammar", "Creativity"};
+        this.level = calculateJobLevel();
     }
 
     @Override

@@ -24,10 +24,7 @@ public class Main {
         ecoSystem.chooseJobFromPool(manager1);
         ecoSystem.assignJobToFreelancer(manager1);
         ecoSystem.assignJobToFreelancer(manager1);
-        freelancer1.submitWork("path.mp4");
-        freelancer2.submitWork("path.jpg");
-
-        System.out.println("Client 1 Balance: $" + client1.getBalance());
-        System.out.println("Manager 1 Balance: $" + manager1.getBalance());
+        freelancer1.submitWork("path.pdf");
+        freelancer2.submitWork("path.txt");
     }
 }
