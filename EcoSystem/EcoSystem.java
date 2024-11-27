@@ -1,16 +1,16 @@
 package EcoSystem;
 
+import Client.Client;
+import Freelancer.Freelancer;
+import Job.Categories.ContentWritingJob;
+import Job.Categories.ScriptWritingJob;
+import Job.Categories.ThumbnailEditingJob;
+import Job.Categories.VideoEditingJob;
+import Job.Job;
+import Manager.Manager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import Client.Client;
-import Freelancer.Freelancer;
-import Job.Job;
-import Job.Categories.ContentWritingJob;
-import Job.Categories.ThumbnailEditingJob;
-import Job.Categories.VideoEditingJob;
-import Manager.Manager;
 
 public class EcoSystem {
 
@@ -242,13 +242,14 @@ public class EcoSystem {
         System.out.println("1. Video Editing");
         System.out.println("2. Thumbnail Editing");
         System.out.println("3. Content Writing");
+        System.out.println("4. Script Writing");
 
         int choice = sc.nextInt();
         sc.nextLine();
 
         Job newJob = null;
 
-        System.out.println("Creating a Video Editing job...");
+        System.out.println("Creating a job...");
         System.out.print("Give a title to the Job: ");
         String title = sc.nextLine();
         System.out.println();
@@ -309,6 +310,17 @@ public class EcoSystem {
                 int numberOfPages = sc.nextInt();
                 System.out.println("Creating a Content Writing job...");
                 newJob = new ContentWritingJob(client.email, this, title, description, date_of_completion, price, numberOfPages);
+                break;
+
+            case 4:
+                System.out.println("Let's get information about the Script Writing job.");
+                System.out.print("How many pages are required for the content? ");
+                numberOfPages = sc.nextInt();
+                sc.nextLine();
+                System.out.print("What is the genre of the video you want script of? ");
+                String genre = sc.nextLine();
+                System.out.println("Creating a Script Writing job...");
+                newJob = new ScriptWritingJob(client.email, this, title, description, date_of_completion, price, numberOfPages, genre);
                 break;
 
             default:
