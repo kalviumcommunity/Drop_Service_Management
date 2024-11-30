@@ -24,7 +24,7 @@ public class Main {
         ecoSystem.chooseJobFromPool(manager1);
         ecoSystem.assignJobToFreelancer(manager1);
         ecoSystem.assignJobToFreelancer(manager1);
-        freelancer1.submitWork("path.pdf");
-        freelancer2.submitWork("path.txt");
+        freelancer1.submitWork("path.mp4");
+        freelancer2.submitWork("path.png");
     }
 }

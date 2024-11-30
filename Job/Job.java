@@ -1,10 +1,9 @@
 package Job;
-import java.time.LocalDate;
-
 import Client.Client;
 import EcoSystem.EcoSystem;
 import Freelancer.Freelancer;
 import Manager.Manager;
+import java.time.LocalDate;
 
 
 abstract public class Job{
@@ -97,6 +96,7 @@ abstract public class Job{
     public void displayJobDetails() {
         System.out.println("Job Title: " + this.title);
         System.out.println("Description: " + this.description);
+        System.out.println("Job Level: " + this.calculateJobLevel());
         System.out.println("Category: " + this.category);
         System.out.println("Date of Completion: " + this.date_of_completion);
         System.out.println("Price: $" + this.price);
